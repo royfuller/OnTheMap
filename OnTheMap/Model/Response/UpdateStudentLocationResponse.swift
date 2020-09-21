@@ -1,5 +1,5 @@
 //
-//  StudentLocation.swift
+//  UpdateStudentLocationResponse.swift
 //  OnTheMap
 //
 //  Created by Roy Fuller on 9/21/20.

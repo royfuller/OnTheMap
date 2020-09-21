@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B01117FB251948B500A88EF1 /* CreateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */; };
+		B01118002519498100A88EF1 /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */; };
+		B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */; };
 		B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FD25193D1200822C1B /* AppDelegate.swift */; };
 		B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FF25193D1200822C1B /* SceneDelegate.swift */; };
 		B0FC610225193D1200822C1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC610125193D1200822C1B /* ViewController.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentLocationResponse.swift; sourceTree = "<group>"; };
+		B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
+		B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStudentLocationsResponse.swift; sourceTree = "<group>"; };
 		B0FC60FA25193D1200822C1B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FC60FD25193D1200822C1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FC60FF25193D1200822C1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B01117FD2519493C00A88EF1 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		B01117FE2519494700A88EF1 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */,
+				B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */,
+				B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		B011180325194B3700A88EF1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B0FC611925193F5500822C1B /* StudentLocation.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B011180425194B5D00A88EF1 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				B0FC611625193F0200822C1B /* OnTheMapClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
 		B0FC60F125193D1200822C1B = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +130,10 @@
 		B0FC611525193E3700822C1B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0FC611625193F0200822C1B /* OnTheMapClient.swift */,
-				B0FC611925193F5500822C1B /* StudentLocation.swift */,
+				B011180425194B5D00A88EF1 /* Client */,
+				B011180325194B3700A88EF1 /* Data */,
+				B01117FE2519494700A88EF1 /* Response */,
+				B01117FD2519493C00A88EF1 /* Request */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,9 +210,12 @@
 			files = (
 				B0FC610225193D1200822C1B /* ViewController.swift in Sources */,
 				B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */,
+				B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */,
 				B0FC611725193F0200822C1B /* OnTheMapClient.swift in Sources */,
+				B01118002519498100A88EF1 /* UpdateStudentLocationResponse.swift in Sources */,
 				B0FC611A25193F5500822C1B /* StudentLocation.swift in Sources */,
 				B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */,
+				B01117FB251948B500A88EF1 /* CreateStudentLocationResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
