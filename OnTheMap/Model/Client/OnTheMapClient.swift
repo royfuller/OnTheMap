@@ -106,7 +106,7 @@ class OnTheMapClient {
             }
             let range = 5..<data!.count
             let newData = data?.subdata(in: range) /* subset response data! */
-            //print(String(data: newData!, encoding: .utf8)!)
+            print(String(data: newData!, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(CreateSessionResponse.self, from: newData!)
@@ -139,10 +139,10 @@ class OnTheMapClient {
             }
             let range = 5..<data!.count
             let newData = data?.subdata(in: range) /* subset response data! */
-            //print(String(data: newData!, encoding: .utf8)!)
+            print(String(data: newData!, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(Session.self, from: newData!)
+                let responseObject = try decoder.decode(DeleteSessionResponse.self, from: newData!)
                 print(responseObject)
             } catch {
                 print(error)

@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,67 +16,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eRE-va-AOb">
-                                <rect key="frame" x="0.0" y="44" width="414" height="176"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-cC-m87">
+                                <rect key="frame" x="10" y="361" width="394" height="184"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imf-3u-3sI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="cZ2-Aa-icj"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="sXa-xe-9kS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-wM-7xO">
-                                        <rect key="frame" x="0.0" y="40" width="414" height="32"/>
+                                        <rect key="frame" x="0.0" y="39" width="394" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="sbj-Of-AH4"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="gMX-Td-18J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pHh-cC-m87">
-                                        <rect key="frame" x="0.0" y="80" width="414" height="96"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-RX-59S">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="bZc-1b-rFy"/>
-                                                </constraints>
-                                                <state key="normal" title="Login"/>
-                                                <connections>
-                                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rwg-2z-xle"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Act-cT-Pa6">
-                                                <rect key="frame" x="0.0" y="32" width="414" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="Z10-nk-odX"/>
-                                                </constraints>
-                                                <state key="normal" title="Delete Session"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOP-l9-Mle">
-                                                <rect key="frame" x="0.0" y="64" width="414" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="pZ8-Ip-mmb"/>
-                                                </constraints>
-                                                <state key="normal" title="Get Students"/>
-                                                <connections>
-                                                    <action selector="getStudents:" destination="BYZ-38-t0r" eventType="touchUpInside" id="253-XZ-WAj"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-RX-59S">
+                                        <rect key="frame" x="0.0" y="78" width="394" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="h4T-Dy-Pm7"/>
+                                        </constraints>
+                                        <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rwg-2z-xle"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Act-cT-Pa6">
+                                        <rect key="frame" x="0.0" y="115" width="394" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="hUW-nn-2wQ"/>
+                                        </constraints>
+                                        <state key="normal" title="Delete Session"/>
+                                        <connections>
+                                            <action selector="deleteSession:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bl7-0f-joN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOP-l9-Mle">
+                                        <rect key="frame" x="0.0" y="152" width="394" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="0PO-TM-1MV"/>
+                                        </constraints>
+                                        <state key="normal" title="Get Students"/>
+                                        <connections>
+                                            <action selector="getStudents:" destination="BYZ-38-t0r" eventType="touchUpInside" id="253-XZ-WAj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity" translatesAutoresizingMaskIntoConstraints="NO" id="MXC-Wa-XS7">
+                                <rect key="frame" x="175" y="275" width="64" height="64"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eRE-va-AOb" secondAttribute="bottom" constant="400" id="9KH-DR-pTB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eRE-va-AOb" secondAttribute="trailing" id="FmX-rR-4Rg"/>
-                            <constraint firstItem="eRE-va-AOb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WtR-yd-OuX"/>
-                            <constraint firstItem="eRE-va-AOb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tCA-IV-uGB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pHh-cC-m87" secondAttribute="trailing" constant="10" id="2Ys-xD-hCy"/>
+                            <constraint firstItem="pHh-cC-m87" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Nnp-oT-DQV"/>
+                            <constraint firstItem="pHh-cC-m87" firstAttribute="top" secondItem="MXC-Wa-XS7" secondAttribute="bottom" constant="22" id="QDj-0r-LH4"/>
+                            <constraint firstItem="MXC-Wa-XS7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kYD-mz-bdU"/>
+                            <constraint firstItem="pHh-cC-m87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="spA-MT-rhd"/>
                         </constraints>
                     </view>
                     <connections>
@@ -91,6 +92,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Udacity" width="64" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

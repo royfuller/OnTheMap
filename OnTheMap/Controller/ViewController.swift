@@ -21,6 +21,10 @@ class LoginViewController: UIViewController {
         OnTheMapClient.createSession(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     
+    @IBAction func deleteSession(_ sender: Any) {
+        OnTheMapClient.deleteSession()
+    }
+    
     @IBAction func getStudents(_ sender: Any) {
         OnTheMapClient.getStudentLocations()
     }

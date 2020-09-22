@@ -12,6 +12,8 @@
 		B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */; };
 		B06D172D25197CE3003BCB9A /* CreateSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172C25197CE3003BCB9A /* CreateSessionRequest.swift */; };
 		B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172F25198852003BCB9A /* CreateSessionResponse.swift */; };
+		B08014752519991C004D2D77 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08014742519991C004D2D77 /* Session.swift */; };
+		B080147825199948004D2D77 /* DeleteSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080147725199948004D2D77 /* DeleteSessionResponse.swift */; };
 		B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FD25193D1200822C1B /* AppDelegate.swift */; };
 		B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FF25193D1200822C1B /* SceneDelegate.swift */; };
 		B0FC610225193D1200822C1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC610125193D1200822C1B /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 		B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
 		B06D172C25197CE3003BCB9A /* CreateSessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionRequest.swift; sourceTree = "<group>"; };
 		B06D172F25198852003BCB9A /* CreateSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionResponse.swift; sourceTree = "<group>"; };
+		B08014742519991C004D2D77 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		B080147725199948004D2D77 /* DeleteSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSessionResponse.swift; sourceTree = "<group>"; };
 		B0FC60FA25193D1200822C1B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FC60FD25193D1200822C1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FC60FF25193D1200822C1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 				B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */,
 				B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */,
 				B06D172F25198852003BCB9A /* CreateSessionResponse.swift */,
+				B080147725199948004D2D77 /* DeleteSessionResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -74,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				B0FC611925193F5500822C1B /* StudentLocation.swift */,
+				B08014742519991C004D2D77 /* Session.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B080147825199948004D2D77 /* DeleteSessionResponse.swift in Sources */,
 				B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */,
 				B0FC610225193D1200822C1B /* ViewController.swift in Sources */,
 				B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */,
@@ -221,6 +228,7 @@
 				B0FC611725193F0200822C1B /* OnTheMapClient.swift in Sources */,
 				B06D172725197913003BCB9A /* CreateStudentLocationResponse.swift in Sources */,
 				B0FC611A25193F5500822C1B /* StudentLocation.swift in Sources */,
+				B08014752519991C004D2D77 /* Session.swift in Sources */,
 				B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */,
 				B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */,
 				B06D172D25197CE3003BCB9A /* CreateSessionRequest.swift in Sources */,
