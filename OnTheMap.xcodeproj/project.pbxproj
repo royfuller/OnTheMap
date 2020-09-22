@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B01117FB251948B500A88EF1 /* CreateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */; };
-		B01118002519498100A88EF1 /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */; };
 		B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */; };
+		B06D172725197913003BCB9A /* CreateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */; };
+		B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */; };
+		B06D172D25197CE3003BCB9A /* CreateSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172C25197CE3003BCB9A /* CreateSessionRequest.swift */; };
+		B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172F25198852003BCB9A /* CreateSessionResponse.swift */; };
 		B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FD25193D1200822C1B /* AppDelegate.swift */; };
 		B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FF25193D1200822C1B /* SceneDelegate.swift */; };
 		B0FC610225193D1200822C1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC610125193D1200822C1B /* ViewController.swift */; };
@@ -21,9 +23,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentLocationResponse.swift; sourceTree = "<group>"; };
-		B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
 		B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStudentLocationsResponse.swift; sourceTree = "<group>"; };
+		B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentLocationResponse.swift; sourceTree = "<group>"; };
+		B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
+		B06D172C25197CE3003BCB9A /* CreateSessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionRequest.swift; sourceTree = "<group>"; };
+		B06D172F25198852003BCB9A /* CreateSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionResponse.swift; sourceTree = "<group>"; };
 		B0FC60FA25193D1200822C1B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FC60FD25193D1200822C1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FC60FF25193D1200822C1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 		B01117FD2519493C00A88EF1 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				B06D172C25197CE3003BCB9A /* CreateSessionRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -57,9 +62,10 @@
 		B01117FE2519494700A88EF1 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				B01117FA251948B500A88EF1 /* CreateStudentLocationResponse.swift */,
-				B01117FF2519498100A88EF1 /* UpdateStudentLocationResponse.swift */,
 				B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */,
+				B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */,
+				B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */,
+				B06D172F25198852003BCB9A /* CreateSessionResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -208,14 +214,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */,
 				B0FC610225193D1200822C1B /* ViewController.swift in Sources */,
 				B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */,
 				B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */,
 				B0FC611725193F0200822C1B /* OnTheMapClient.swift in Sources */,
-				B01118002519498100A88EF1 /* UpdateStudentLocationResponse.swift in Sources */,
+				B06D172725197913003BCB9A /* CreateStudentLocationResponse.swift in Sources */,
 				B0FC611A25193F5500822C1B /* StudentLocation.swift in Sources */,
+				B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */,
 				B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */,
-				B01117FB251948B500A88EF1 /* CreateStudentLocationResponse.swift in Sources */,
+				B06D172D25197CE3003BCB9A /* CreateSessionRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

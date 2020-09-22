@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct UpdateStudentLocationResponse: Codable {
+    let updatedAt: String
+}

@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct CreateStudentLocationResponse: Codable {
+    let createdAt: String
+    let objectId: String
+}
