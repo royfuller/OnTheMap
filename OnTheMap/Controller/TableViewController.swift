@@ -20,7 +20,7 @@ class TableViewController: UITableViewController {
             if error != nil {
                 // Handle error - popup maybe?
             } else {
-                StudentLocationsModel.studentLocations = studentLocations
+                self.studentLocations = studentLocations
             }
             self.tableView.reloadData()
         }
@@ -34,12 +34,12 @@ class TableViewController: UITableViewController {
     // MARK: TableView Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentLocationsModel.studentLocations.count
+        return studentLocations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationsTableViewCell")!
-        let studentLocation = StudentLocationsModel.studentLocations[(indexPath as NSIndexPath).row]
+        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
 
         cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.detailTextLabel?.text = "\(studentLocation.mediaURL)"

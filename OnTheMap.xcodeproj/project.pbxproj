@@ -15,7 +15,6 @@
 		B08014752519991C004D2D77 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08014742519991C004D2D77 /* Session.swift */; };
 		B080147825199948004D2D77 /* DeleteSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080147725199948004D2D77 /* DeleteSessionResponse.swift */; };
 		B0B2A472251AAD7900A0DF09 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2A471251AAD7900A0DF09 /* TableViewController.swift */; };
-		B0B8B591251ACFE3004589FE /* StudentLocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B8B590251ACFE3004589FE /* StudentLocationsModel.swift */; };
 		B0B8B595251AD449004589FE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B8B594251AD449004589FE /* MapViewController.swift */; };
 		B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FD25193D1200822C1B /* AppDelegate.swift */; };
 		B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC60FF25193D1200822C1B /* SceneDelegate.swift */; };
@@ -36,7 +35,6 @@
 		B08014742519991C004D2D77 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B080147725199948004D2D77 /* DeleteSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSessionResponse.swift; sourceTree = "<group>"; };
 		B0B2A471251AAD7900A0DF09 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		B0B8B590251ACFE3004589FE /* StudentLocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsModel.swift; sourceTree = "<group>"; };
 		B0B8B594251AD449004589FE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B0FC60FA25193D1200822C1B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FC60FD25193D1200822C1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			children = (
 				B0FC611925193F5500822C1B /* StudentLocation.swift */,
 				B08014742519991C004D2D77 /* Session.swift */,
-				B0B8B590251ACFE3004589FE /* StudentLocationsModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -240,7 +237,6 @@
 				B0FC611A25193F5500822C1B /* StudentLocation.swift in Sources */,
 				B08014752519991C004D2D77 /* Session.swift in Sources */,
 				B0B8B595251AD449004589FE /* MapViewController.swift in Sources */,
-				B0B8B591251ACFE3004589FE /* StudentLocationsModel.swift in Sources */,
 				B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */,
 				B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */,
 				B06D172D25197CE3003BCB9A /* CreateSessionRequest.swift in Sources */,

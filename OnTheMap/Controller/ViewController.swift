@@ -21,7 +21,9 @@ class LoginViewController: UIViewController {
     }
     
     func handleCreateSessionResponse(createSessionResponse: CreateSessionResponse?, error: Error?) {
-        if error == nil {
+        if error != nil {
+            print(error!) // How to handle error here?
+        } else {
             performSegue(withIdentifier: "completeLogin", sender: nil)
         }
     }
