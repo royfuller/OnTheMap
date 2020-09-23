@@ -9,13 +9,13 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    // MARK: Lifecycle
-    
     var studentLocations = [StudentLocation]()
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.title = "On The Map"
+        self.navigationItem.title = "On The Map"
         OnTheMapClient.getStudentLocations { (studentLocations, error) in
             if error != nil {
                 // Handle error - popup maybe?
@@ -47,10 +47,16 @@ class TableViewController: UITableViewController {
         
         return cell
     }
-//
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let detailController = self.storyboard!.instantiateViewController(withIdentifier: MemeConstants.memeDetailViewController) as! MemeDetailViewController
-//        detailController.meme = MemesManager.shared.getMemes()[(indexPath as NSIndexPath).row]
-//        self.navigationController!.pushViewController(detailController, animated: true)
-//    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
+        UIApplication.shared.open(URL(string: studentLocation.mediaURL)!, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        OnTheMapClient.deleteSession()
+        let controller: LoginViewController
+        controller = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        present(controller, animated: true, completion: nil)
+    }
 }

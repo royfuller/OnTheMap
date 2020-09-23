@@ -14,7 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.title = "On The Map"
+        self.navigationItem.title = "On The Map"
 //        OnTheMapClient.getStudentLocations { (studentLocations, error) in
 //            if error != nil {
 //                print(error!)// Handle error - popup maybe?
@@ -81,12 +81,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            pinView!.rightCalloutAccessoryView = UIButton(type: .infoLight)//.detailDisclosure)
         }
         else {
             pinView!.annotation = annotation
         }
         
         return pinView
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        OnTheMapClient.deleteSession()
+        let controller: LoginViewController
+        controller = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        present(controller, animated: true, completion: nil)
     }
 }
