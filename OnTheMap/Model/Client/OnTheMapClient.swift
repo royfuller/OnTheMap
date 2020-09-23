@@ -34,18 +34,26 @@ class OnTheMapClient {
         }
     }
 
-    class func getStudentLocations() {
+    class func getStudentLocations(completionHandler: @escaping ([StudentLocation], Error?) -> Void){
         let task = URLSession.shared.dataTask(with: Endpoints.getStudentLocations.url) { (data, response, error) in
             guard let data = data else {
-                print(error!)
+                DispatchQueue.main.async {
+                    completionHandler([], error)
+                }
                 return
             }
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(GetStudentLocationsResponse.self, from: data)
                 print(responseObject)
+                DispatchQueue.main.async {
+                    completionHandler(responseObject.results, nil)
+                }
             } catch {
-                print(error)
+                DispatchQueue.main.async {
+                    completionHandler([], error)
+                }
+                return
             }
         }
         task.resume()
@@ -93,7 +101,7 @@ class OnTheMapClient {
         task.resume()
     }
 
-    class func createSession(username: String, password: String) {
+    class func createSession(username: String, password: String, completionHandler: @escaping (CreateSessionResponse?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.createSession.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -101,7 +109,9 @@ class OnTheMapClient {
         request.httpBody = try! JSONEncoder().encode(body)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil { // Handle error…
-                print(error!)
+                DispatchQueue.main.async {
+                    completionHandler(nil, error)
+                }
                 return
             }
             let range = 5..<data!.count
@@ -110,9 +120,14 @@ class OnTheMapClient {
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(CreateSessionResponse.self, from: newData!)
-                print(responseObject)
+                DispatchQueue.main.async {
+                    completionHandler(responseObject, nil)
+                }
             } catch {
-                print(error)
+                DispatchQueue.main.async {
+                    completionHandler(nil, error)
+                }
+                return
             }
         }
         task.resume()

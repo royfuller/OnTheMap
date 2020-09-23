@@ -9,25 +9,21 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func login(_ sender: Any) {
-        OnTheMapClient.createSession(username: usernameTextField.text ?? "", password: passwordTextField.text ?? "")
+        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(createSessionResponse:error:))
     }
     
-    @IBAction func deleteSession(_ sender: Any) {
-        OnTheMapClient.deleteSession()
+    func handleCreateSessionResponse(createSessionResponse: CreateSessionResponse?, error: Error?) {
+        if error == nil {
+            performSegue(withIdentifier: "completeLogin", sender: nil)
+        }
     }
-    
-    @IBAction func getStudents(_ sender: Any) {
-        OnTheMapClient.getStudentLocations()
-    }
-    
 }
 
