@@ -19,7 +19,11 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(createSessionResponse:error:))
     }
-    
+
+    @IBAction func signUp(_ sender: Any) {
+        UIApplication.shared.open(URL(string: "https://www.udacity.com")!, options: [:], completionHandler: nil)
+    }
+
     func handleCreateSessionResponse(createSessionResponse: CreateSessionResponse?, error: Error?) {
         if error != nil {
             print(error!) // How to handle error here?
