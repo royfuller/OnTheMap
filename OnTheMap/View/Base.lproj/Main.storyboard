@@ -176,7 +176,11 @@
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="plus" catalog="system" id="72Y-5c-o5S" userLabel="Add"/>
-                            <barButtonItem image="arrow.clockwise" catalog="system" id="yHT-WT-Yyg" userLabel="Refresh"/>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="yHT-WT-Yyg" userLabel="Refresh">
+                                <connections>
+                                    <action selector="refresh:" destination="bMr-82-OSm" id="7e4-ON-50t"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
@@ -232,7 +236,11 @@
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="plus" catalog="system" id="YSW-0Y-dX1" userLabel="Add"/>
-                            <barButtonItem image="arrow.clockwise" catalog="system" id="OiN-36-AQP" userLabel="Refresh"/>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="OiN-36-AQP" userLabel="Refresh">
+                                <connections>
+                                    <action selector="refresh:" destination="jfz-lN-8AT" id="2Ri-io-7fX"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

@@ -9,6 +9,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    // MARK: Variables
     var studentLocations = [StudentLocation]()
     
     // MARK: Lifecycle
@@ -16,19 +17,11 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "On The Map"
-        OnTheMapClient.getStudentLocations { (studentLocations, error) in
-            if error != nil {
-                // Handle error - popup maybe?
-            } else {
-                self.studentLocations = studentLocations
-            }
-            self.tableView.reloadData()
-        }
+        getStudentLocations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //tableView.reloadData()
     }
     
     // MARK: TableView Methods
@@ -53,10 +46,29 @@ class TableViewController: UITableViewController {
         UIApplication.shared.open(URL(string: studentLocation.mediaURL)!, options: [:], completionHandler: nil)
     }
     
+    // MARK: Actions
+    
     @IBAction func logout(_ sender: Any) {
         OnTheMapClient.deleteSession()
         let controller: LoginViewController
         controller = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
         present(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func refresh(_ sender: Any) {
+        getStudentLocations()
+    }
+    
+    // MARK: Utility function(s)
+    
+    func getStudentLocations() {
+        OnTheMapClient.getStudentLocations { (studentLocations, error) in
+            if error != nil {
+                // Handle error - popup maybe?
+            } else {
+                self.studentLocations = studentLocations
+            }
+            self.tableView.reloadData()
+        }
     }
 }
