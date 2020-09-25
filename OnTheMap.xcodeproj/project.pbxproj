@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9D0ED06251D657E008601BA /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0ED05251D657E008601BA /* InformationPostingViewController.swift */; };
+		A9D0ED08251D6C82008601BA /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0ED07251D6C82008601BA /* AddLocationViewController.swift */; };
 		B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */; };
 		B06D172725197913003BCB9A /* CreateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */; };
 		B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A9D0ED05251D657E008601BA /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		A9D0ED07251D6C82008601BA /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		B06A856125194E3800963C2F /* GetStudentLocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStudentLocationsResponse.swift; sourceTree = "<group>"; };
 		B06D172625197913003BCB9A /* CreateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentLocationResponse.swift; sourceTree = "<group>"; };
 		B06D17292519793E003BCB9A /* UpdateStudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentLocationResponse.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				B0FC610125193D1200822C1B /* LoginViewController.swift */,
 				B0B2A471251AAD7900A0DF09 /* TableViewController.swift */,
 				B0B8B594251AD449004589FE /* MapViewController.swift */,
+				A9D0ED05251D657E008601BA /* InformationPostingViewController.swift */,
+				A9D0ED07251D6C82008601BA /* AddLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,10 +238,12 @@
 				B0FC610225193D1200822C1B /* LoginViewController.swift in Sources */,
 				B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */,
 				B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */,
+				A9D0ED06251D657E008601BA /* InformationPostingViewController.swift in Sources */,
 				B0FC611725193F0200822C1B /* OnTheMapClient.swift in Sources */,
 				B06D172725197913003BCB9A /* CreateStudentLocationResponse.swift in Sources */,
 				B0FC611A25193F5500822C1B /* StudentLocation.swift in Sources */,
 				B08014752519991C004D2D77 /* Session.swift in Sources */,
+				A9D0ED08251D6C82008601BA /* AddLocationViewController.swift in Sources */,
 				B0B8B595251AD449004589FE /* MapViewController.swift in Sources */,
 				B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */,
 				B0FC610025193D1200822C1B /* SceneDelegate.swift in Sources */,
