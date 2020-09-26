@@ -19,12 +19,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "On The Map"
+        mapView.delegate = self
         getStudentLocations()
     }
     
-    // MARK: MKMapViewDelegate
+    // MARK: MapView delegate methods
     
-
     // The below code was copied from the PinSample app.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"

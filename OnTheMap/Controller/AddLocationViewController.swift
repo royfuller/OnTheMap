@@ -25,7 +25,47 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Add Location"
+        mapView.delegate = self
+        geocodeLocation()
+    }
+
+    // MARK: MapView delegate methods
+    
+    // The below code was copied from the PinSample app. - Should this be broken out into it's own delegate class?
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .infoLight)//.detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
         
+        return pinView
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func finish(_ sender: Any) {
+        // TODO: Get required info
+        OnTheMapClient.getPublicUserData(userId: SessionManager.shared.account.key) { (error) in
+            if error != nil {
+                print(error!)
+            }
+        }
+        
+        // TODO: Create new student location
+    }
+    
+    // MARK: Utility function(s)
+    
+    // The below code was adapted from https://cocoacasts.com/forward-geocoding-with-clgeocoder
+    func geocodeLocation() {
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(location) { (placemarks, error) in
@@ -44,6 +84,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
 //            let firstName = studentLocation.firstName
 //            let lastName = studentLocation.lastName
             
+            
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
 //            annotation.title = "\(firstName) \(lastName)"
@@ -54,25 +95,5 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 self.mapView.addAnnotations(self.annotations)
             }
         }
-    }
-    
-    // MARK: Utility function(s)
-    
-    // The below code was copied from the PinSample app. - Should this be broken out into it's own delegate class?
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .infoLight)//.detailDisclosure)
-        }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
     }
 }

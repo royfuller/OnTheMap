@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: Combine GET/POST code into generic methods
+// TODO: Error handling
 class OnTheMapClient {
     
     enum Endpoints {
@@ -17,7 +19,7 @@ class OnTheMapClient {
         case updateStudentLocation(String)
         case createSession
         case deleteSession
-        case getUserData(String)
+        case getPublicUserData(String)
         
         var stringValue: String {
             switch self {
@@ -26,7 +28,7 @@ class OnTheMapClient {
             case .updateStudentLocation(let objectId): return Endpoints.base + "/\(objectId)"
             case .createSession: return Endpoints.base + "/session"
             case .deleteSession: return Endpoints.base + "/session"
-            case .getUserData(let userId): return Endpoints.base + "/users/\(userId)"
+            case .getPublicUserData(let userId): return Endpoints.base + "/users/\(userId)"
             }
         }
         var url: URL {
@@ -45,7 +47,7 @@ class OnTheMapClient {
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(GetStudentLocationsResponse.self, from: data)
-                print(responseObject)
+//                print(responseObject)
                 DispatchQueue.main.async {
                     completionHandler(responseObject.results, nil)
                 }
@@ -65,17 +67,17 @@ class OnTheMapClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(studentLocation)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
-                print(error!)
-                return
-            }
-            let decoder = JSONDecoder()
-            do {
-                let responseObject = try decoder.decode(CreateStudentLocationResponse.self, from: data)
-                print(responseObject)
-            } catch {
-                print(error)
-            }
+//            guard let data = data else {
+//                print(error!)
+//                return
+//            }
+//            let decoder = JSONDecoder()
+//            do {
+//                let responseObject = try decoder.decode(CreateStudentLocationResponse.self, from: data)
+//                print(responseObject)
+//            } catch {
+//                print(error)
+//            }
         }
         task.resume()
     }
@@ -86,22 +88,22 @@ class OnTheMapClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(newStudentLocation)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {
-                print(error!)
-                return
-            }
-            let decoder = JSONDecoder()
-            do {
-                let responseObject = try decoder.decode(CreateStudentLocationResponse.self, from: data)
-                print(responseObject)
-            } catch {
-                print(error)
-            }
+//            guard let data = data else {
+//                print(error!)
+//                return
+//            }
+//            let decoder = JSONDecoder()
+//            do {
+//                let responseObject = try decoder.decode(CreateStudentLocationResponse.self, from: data)
+//                print(responseObject)
+//            } catch {
+//                print(error)
+//            }
         }
         task.resume()
     }
 
-    class func createSession(username: String, password: String, completionHandler: @escaping (CreateSessionResponse?, Error?) -> Void) {
+    class func createSession(username: String, password: String, completionHandler: @escaping (Error?) -> Void) {
         var request = URLRequest(url: Endpoints.createSession.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -110,7 +112,7 @@ class OnTheMapClient {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil { // Handle error…
                 DispatchQueue.main.async {
-                    completionHandler(nil, error)
+                    completionHandler(error)
                 }
                 return
             }
@@ -121,11 +123,13 @@ class OnTheMapClient {
             do {
                 let responseObject = try decoder.decode(CreateSessionResponse.self, from: newData!)
                 DispatchQueue.main.async {
-                    completionHandler(responseObject, nil)
+                    SessionManager.shared.session = responseObject.session
+                    SessionManager.shared.account = responseObject.account
+                    completionHandler(nil)
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completionHandler(nil, error)
+                    completionHandler(error)
                 }
                 return
             }
@@ -149,21 +153,22 @@ class OnTheMapClient {
         }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error…
+            SessionManager.shared.account = nil
+            SessionManager.shared.session = nil
+        }
+        task.resume()
+    }
+    
+    class func getPublicUserData(userId: String, completionHandler: (Error?) -> Void) {
+        
+        let task = URLSession.shared.dataTask(with: Endpoints.getPublicUserData(userId).url) { (data, response, error) in
+            if error != nil { // TODO: Handle error...
                 return
             }
             let range = 5..<data!.count
             let newData = data?.subdata(in: range) /* subset response data! */
             print(String(data: newData!, encoding: .utf8)!)
-            let decoder = JSONDecoder()
-            do {
-                let responseObject = try decoder.decode(DeleteSessionResponse.self, from: newData!)
-                print(responseObject)
-            } catch {
-                print(error)
-            }
         }
         task.resume()
     }
-    
 }

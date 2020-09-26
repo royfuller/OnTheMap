@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func login(_ sender: Any) {
-        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(createSessionResponse:error:))
+        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(error:))
     }
 
     @IBAction func signUp(_ sender: Any) {
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Utility function(s)
 
-    func handleCreateSessionResponse(createSessionResponse: CreateSessionResponse?, error: Error?) {
+    func handleCreateSessionResponse(error: Error?) {
         if error != nil {
             print(error!) // How to handle error here?
         } else {
