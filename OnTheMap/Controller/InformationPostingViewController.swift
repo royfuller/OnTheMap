@@ -9,6 +9,11 @@ import UIKit
 
 class InformationPostingViewController: UIViewController {
     
+    // MARK: Outlets
+    
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var linkTextField: UITextField!
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -23,5 +28,11 @@ class InformationPostingViewController: UIViewController {
     
     @IBAction func findLocation(_ sender: Any) {
         self.performSegue(withIdentifier: "addLocation", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination as! AddLocationViewController
+        controller.location = locationTextField.text
+        controller.mediaURL = linkTextField.text
     }
 }
