@@ -15,8 +15,6 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     var location: String!
     var mediaURL: String!
-    var firstName: String!
-    var lastName: String!
     var latitude: Double!
     var longitude: Double!
     var annotations = [MKPointAnnotation]()
@@ -57,9 +55,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: Actions
     
     @IBAction func finish(_ sender: Any) {
-        let studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude, longitude: longitude, mapString: location, mediaURL: mediaURL, uniqueKey: SessionManager.shared.account.key, objectId: nil, createdAt: nil, updatedAt: nil)
-
-        OnTheMapClient.createStudentLocation(studentLocation: studentLocation) { (createStudentLocationResponse, error) in
+        OnTheMapClient.createStudentLocation(studentLocation: OnTheMapManager.shared.studentLocation) { (createStudentLocationResponse, error) in
             if(error != nil) {
                 print(error!) // TODO: How to handle error here?
                 return
@@ -81,38 +77,35 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 print(error!)  // TODO: How to handle error here?
                 return
             }
+                
+            // TODO: How to handle unwrapping here?
+            let location = placemarks.first?.location
+            let latitude = location?.coordinate.latitude
+            let longitude = location?.coordinate.longitude
+            let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
             
-            OnTheMapClient.getPublicUserData(userId: SessionManager.shared.account.key) { (getPublicUserDataResponse, error) in
-                guard let getPublicUserDataResponse = getPublicUserDataResponse else {
-                    print(error!) // TODO: Handle error
-                    return
-                }
-                
-                // TODO: How to handle unwrapping here?
-                let location = placemarks.first?.location
-                let latitude = location?.coordinate.latitude
-                let longitude = location?.coordinate.longitude
-                let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-                
-                // TODO: Is this the proper way to unwrap here?
-                let firstName = getPublicUserDataResponse.firstName ?? ""
-                let lastName = getPublicUserDataResponse.lastName ?? ""
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = coordinate
-                annotation.title = "\(firstName) \(lastName)"
-                annotation.subtitle = self.mediaURL
-                
-                // TODO: I don't like this - how should I create StudentLocation?
-                DispatchQueue.main.async {
-                    self.annotations.append(annotation)
-                    self.mapView.addAnnotations(self.annotations)
-                    self.firstName = firstName
-                    self.lastName = lastName
-                    self.latitude = latitude
-                    self.longitude = longitude
-                }
-                
+            let firstName = OnTheMapManager.shared.publicUserData.firstName
+            let lastName =  OnTheMapManager.shared.publicUserData.lastName
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = "\(firstName) \(lastName)"
+            annotation.subtitle = self.mediaURL
+            
+            // TODO: Move this code to finish and fix update logic.
+            if OnTheMapManager.shared.studentLocation == nil {
+                OnTheMapManager.shared.studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude!, longitude: longitude!, mapString: self.location, mediaURL: self.mediaURL, uniqueKey: OnTheMapManager.shared.userId, objectId: nil, createdAt: nil, updatedAt: nil)
+            } else {
+                OnTheMapManager.shared.studentLocation.latitude = latitude!
+                OnTheMapManager.shared.studentLocation.longitude = longitude!
+                OnTheMapManager.shared.studentLocation.mapString = self.location
+                OnTheMapManager.shared.studentLocation.mediaURL = self.mediaURL
+            }
+            
+            // TODO: I don't like this - how should I create StudentLocation?
+            DispatchQueue.main.async {
+                self.annotations.append(annotation)
+                self.mapView.addAnnotations(self.annotations)
             }
         }
     }

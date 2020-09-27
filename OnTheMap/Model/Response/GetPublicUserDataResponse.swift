@@ -72,7 +72,7 @@ struct Membership: Codable {
 }
 
 struct GetPublicUserDataResponse: Codable {
-    let lastName: String?
+    let lastName: String
     let socialAccounts: [String]?
     let mailingAddress: String?
     let cohortKeys: [String]?
@@ -84,7 +84,7 @@ struct GetPublicUserDataResponse: Codable {
     let sitePreferences: String?
     let occupation: String?
     let image: String?
-    let firstName: String?
+    let firstName: String
     let jabberId: String?
     let languages: String?
     let badges: [String]?

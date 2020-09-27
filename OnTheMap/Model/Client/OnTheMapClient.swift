@@ -114,7 +114,7 @@ class OnTheMapClient {
         task.resume()
     }
 
-    class func createSession(username: String, password: String, completionHandler: @escaping (Error?) -> Void) {
+    class func createSession(username: String, password: String, completionHandler: @escaping (String?, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.createSession.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -123,7 +123,7 @@ class OnTheMapClient {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil { // Handle error…
                 DispatchQueue.main.async {
-                    completionHandler(error)
+                    completionHandler(nil, error)
                 }
                 return
             }
@@ -134,13 +134,11 @@ class OnTheMapClient {
             do {
                 let responseObject = try decoder.decode(CreateSessionResponse.self, from: newData!)
                 DispatchQueue.main.async {
-                    SessionManager.shared.session = responseObject.session
-                    SessionManager.shared.account = responseObject.account
-                    completionHandler(nil)
+                        completionHandler(responseObject.account.key, nil)
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completionHandler(error)
+                    completionHandler(nil, error)
                 }
                 return
             }

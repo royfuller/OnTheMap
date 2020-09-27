@@ -23,7 +23,8 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func login(_ sender: Any) {
-        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(error:))
+        // TODO: Perhaps check for empty string?
+        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(userId:error:))
     }
 
     @IBAction func signUp(_ sender: Any) {
@@ -32,12 +33,22 @@ class LoginViewController: UIViewController {
     
     // MARK: Utility function(s)
 
-    func handleCreateSessionResponse(error: Error?) {
-        if error != nil {
-            print(error!) // How to handle error here?
-        } else {
-            performSegue(withIdentifier: "completeLogin", sender: nil)
+    func handleCreateSessionResponse(userId: String?, error: Error?) {
+        guard let userId = userId else {
+            print(error!)  // TODO: Error handling
+            return
         }
+        OnTheMapManager.shared.userId = userId
+        OnTheMapClient.getPublicUserData(userId: userId, completionHandler: handleGetPublicUserDataResponse(publicUserDataResonse:error:))
+    }
+    
+    func handleGetPublicUserDataResponse(publicUserDataResonse: GetPublicUserDataResponse?, error: Error?) {
+        guard let publicUserDataResponse = publicUserDataResonse else {
+            print(error!)
+            return
+        }
+        OnTheMapManager.shared.publicUserData = publicUserDataResponse
+        performSegue(withIdentifier: "completeLogin", sender: nil)
     }
 }
 
