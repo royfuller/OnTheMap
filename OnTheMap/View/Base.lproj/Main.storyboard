@@ -98,7 +98,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5WT-8q-Z5W">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="CYZ-9r-FWP" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" modalPresentationStyle="fullScreen" id="CYZ-9r-FWP" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="kc0-E8-4Yb"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xJH-nV-cvj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -203,8 +203,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="cGL-Q5-J2z">
-                                <rect key="frame" x="87" y="278" width="240" height="98"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="cGL-Q5-J2z">
+                                <rect key="frame" x="87" y="324" width="240" height="67"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dtA-uH-hkY">
                                 <rect key="frame" x="25" y="421" width="364" height="108"/>
@@ -236,8 +236,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cGL-Q5-J2z" firstAttribute="centerX" secondItem="dtA-uH-hkY" secondAttribute="centerX" id="5d6-IJ-iAw"/>
+                            <constraint firstItem="dtA-uH-hkY" firstAttribute="top" secondItem="cGL-Q5-J2z" secondAttribute="bottom" constant="30" id="G0B-Ve-lFx"/>
                             <constraint firstItem="dtA-uH-hkY" firstAttribute="leading" secondItem="d5B-0N-sjk" secondAttribute="leading" constant="25" id="NZV-P5-JEK"/>
-                            <constraint firstItem="dtA-uH-hkY" firstAttribute="top" secondItem="cGL-Q5-J2z" secondAttribute="bottom" constant="45" id="RJw-Dy-Uq7"/>
                             <constraint firstItem="d5B-0N-sjk" firstAttribute="trailing" secondItem="dtA-uH-hkY" secondAttribute="trailing" constant="25" id="fWg-Fi-bwM"/>
                             <constraint firstItem="cGL-Q5-J2z" firstAttribute="leading" secondItem="d5B-0N-sjk" secondAttribute="leading" constant="87" id="fnB-Vz-mpN"/>
                             <constraint firstItem="dtA-uH-hkY" firstAttribute="centerY" secondItem="d5B-0N-sjk" secondAttribute="centerY" id="moV-w2-UMh"/>
@@ -390,12 +390,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Zbw-Ht-QqB"/>
+        <segue reference="Yzv-Wb-dcn"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Pin" width="64" height="98"/>
         <image name="Udacity" width="64" height="64"/>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="icon_world" width="52" height="67"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>

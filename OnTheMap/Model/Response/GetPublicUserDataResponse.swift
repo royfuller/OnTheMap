@@ -7,91 +7,151 @@
 
 import Foundation
 
-//struct User: Codable {
-//    let lastName: String
-//    let socialAccounts: Any?
-//    let mailingAddress: Any?
-//    let cohortKeys: Any?
-//    let singature: Any?
-//    let stripeCustomerId: Any?
-//    let grd: Any?
-//    let facebookId: Any?
-//    let timezone: Any?
-//    let sitePreferences: Any?
-//    let occupation: Any?
-//    let image: Any?
-//    let firstName: String
-//    let jabberId: Any?
-//    let languages: Any?
-//    let badges: Any?
-//    let location: Any?
-//    let externalServicePassword: Any?
-//    let principals: Any?
-//    let enrollments: Any?
-//    let email: Any?
-//    let websiteUrl: Any?
-//    let externalAccounts: Any?
-//    let bio: Any?
-//    let coachingData: Any?
-//    let tags: Any?
-//    let affiliateProfiles: Any?
-//    let hasPassword: Any?
-//    let emailPreferences: Any?
-//    let resume: Any?
-//    let key: String
-//    let nickname: String?
-//    let employerSharing: Any?
-//    let memberships: Any?
-//    let zendeskId: Any?
-//    let registered: Any?
-//    let linkedinUrl: Any?
-//    let googleId: Any?
-//    let imageUrl: Any?
-//    
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case lastName = "last_name"
-//        case socialAccounts = "social_accounts"
-//        case mailingAddress = "mailing_address"
-//        case cohortKeys = "_cohort_keys"
-//        case singature = "_signature"
-//        case stripeCustomerId = "_stripe_customer_Id"
-//        case grd = "guard"
-//        case facebookId = "_facebook_id"
-//        case timezone
-//        case sitePreferences = "site_preferences"
-//        case occupation
-//        case image = "_image"
-//        case firstName = "first_name"
-//        case jabberId = "jabber_id"
-//        case languages
-//        case badges = "_badges"
-//        case location
-//        case externalServicePassword = "exernal_service_password"
-//        case principals = "_principals"
-//        case enrollments = "_enrollments"
-//        case email
-//        case websiteUrl = "website_url"
-//        case externalAccounts = "external_accounts"
-//        case bio
-//        case coachingData = "coaching_data"
-//        case tags
-//        case affiliateProfiles = "affiliate_profiles"
-//        case hasPassword = "_has_password"
-//        case emailPreferences = "email_preferences"
-//        case resume = "_resume"
-//        case key
-//        case nickname
-//        case employerSharing = "employer_sharing"
-//        case memberships = "_memberships"
-//        case zendeskId = "zendesk_id"
-//        case registered = "_registered"
-//        case linkedinUrl = "linkedin_url"
-//        case googleId = "_google_id"
-//        case imageUrl = "_image_url"
-//    }
-//}
-//
-//struct GetPublicUserDataResponse: Codable {
-//    let user: User
-//}
+struct Permission: Codable {
+    let derivation: [String]?
+    let behavior: String?
+    let principalRef: [String:String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case derivation
+        case behavior
+        case principalRef = "principal_ref"
+    }
+}
+
+struct Guard: Codable {
+    let canEdit: Bool?
+    let permissions: [Permission]?
+    let allowedBehaviors: [String]?
+    let subjectKind: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case canEdit = "can_edit"
+        case permissions
+        case allowedBehaviors = "allowed_behaviors"
+        case subjectKind = "subject_kind"
+    }
+}
+
+struct Email: Codable {
+    let verificationCodeSent: Bool?
+    let verified: Bool?
+    let address: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case verificationCodeSent = "_verification_code_sent"
+        case verified
+        case address
+    }
+}
+
+struct EmailPreferences: Codable {
+    let okUserResearch: Bool?
+    let masterOk: Bool?
+    let okCourse: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case okUserResearch = "ok_user_research"
+        case masterOk = "master_ok"
+        case okCourse = "ok_course"
+    }
+}
+
+struct Membership: Codable {
+    let current: Bool?
+    let groupRef: [String:String]?
+    let creationTime: String?
+    let expirationTime: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case current
+        case groupRef = "group_ref"
+        case creationTime = "creation_time"
+        case expirationTime = "expiration_time"
+    }
+}
+
+struct GetPublicUserDataResponse: Codable {
+    let lastName: String?
+    let socialAccounts: [String]?
+    let mailingAddress: String?
+    let cohortKeys: [String]?
+    let singature: String?
+    let stripeCustomerId: String?
+    let grd: Guard?
+    let facebookId: String?
+    let timezone: String?
+    let sitePreferences: String?
+    let occupation: String?
+    let image: String?
+    let firstName: String?
+    let jabberId: String?
+    let languages: String?
+    let badges: [String]?
+    let location: String?
+    let externalServicePassword: String?
+    let principals: [String]?
+    let enrollments: [String]?
+    let email: Email?
+    let websiteUrl: [String]?
+    let externalAccounts: [String]?
+    let bio: String?
+    let coachingData: String?
+    let tags: [String]?
+    let affiliateProfiles: [String]?
+    let hasPassword: Bool?
+    let emailPreferences: EmailPreferences?
+    let resume: String?
+    let key: String?
+    let nickname: String?
+    let employerSharing: Bool?
+    let memberships: [Membership]?
+    let zendeskId: String?
+    let registered: Bool?
+    let linkedinUrl: String?
+    let googleId: String?
+    let imageUrl: String?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case lastName = "last_name"
+        case socialAccounts = "social_accounts"
+        case mailingAddress = "mailing_address"
+        case cohortKeys = "_cohort_keys"
+        case singature = "_signature"
+        case stripeCustomerId = "_stripe_customer_Id"
+        case grd = "guard"
+        case facebookId = "_facebook_id"
+        case timezone
+        case sitePreferences = "site_preferences"
+        case occupation
+        case image = "_image"
+        case firstName = "first_name"
+        case jabberId = "jabber_id"
+        case languages
+        case badges = "_badges"
+        case location
+        case externalServicePassword = "exernal_service_password"
+        case principals = "_principals"
+        case enrollments = "_enrollments"
+        case email
+        case websiteUrl = "website_url"
+        case externalAccounts = "external_accounts"
+        case bio
+        case coachingData = "coaching_data"
+        case tags
+        case affiliateProfiles = "affiliate_profiles"
+        case hasPassword = "_has_password"
+        case emailPreferences = "email_preferences"
+        case resume = "_resume"
+        case key
+        case nickname
+        case employerSharing = "employer_sharing"
+        case memberships = "_memberships"
+        case zendeskId = "zendesk_id"
+        case registered = "_registered"
+        case linkedinUrl = "linkedin_url"
+        case googleId = "_google_id"
+        case imageUrl = "_image_url"
+    }
+}

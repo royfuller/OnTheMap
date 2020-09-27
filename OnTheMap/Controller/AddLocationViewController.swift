@@ -15,9 +15,14 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     var location: String!
     var mediaURL: String!
+    var firstName: String!
+    var lastName: String!
+    var latitude: Double!
+    var longitude: Double!
     var annotations = [MKPointAnnotation]()
     
     // MARK: Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
     
     // MARK: Lifecycle
@@ -52,14 +57,17 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: Actions
     
     @IBAction func finish(_ sender: Any) {
-        // TODO: Get required info
-        OnTheMapClient.getPublicUserData(userId: SessionManager.shared.account.key) { (error) in
-            if error != nil {
-                print(error!)
+        let studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude, longitude: longitude, mapString: location, mediaURL: mediaURL, uniqueKey: SessionManager.shared.account.key, objectId: nil, createdAt: nil, updatedAt: nil)
+
+        OnTheMapClient.createStudentLocation(studentLocation: studentLocation) { (createStudentLocationResponse, error) in
+            if(error != nil) {
+                print(error!) // TODO: How to handle error here?
+                return
             }
+            let controller: UITabBarController
+            controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            self.present(controller, animated: true, completion: nil)
         }
-        
-        // TODO: Create new student location
     }
     
     // MARK: Utility function(s)
@@ -74,25 +82,37 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
-            // TODO: How to handle unwrapping here?
-            let location = placemarks.first?.location
-            let latitude = location?.coordinate.latitude
-            let longitude = location?.coordinate.longitude
-            let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            
-            // TODO: Get student name from Udactiy API
-//            let firstName = studentLocation.firstName
-//            let lastName = studentLocation.lastName
-            
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-//            annotation.title = "\(firstName) \(lastName)"
-            annotation.subtitle = self.mediaURL
-            
-            DispatchQueue.main.async {
-                self.annotations.append(annotation)
-                self.mapView.addAnnotations(self.annotations)
+            OnTheMapClient.getPublicUserData(userId: SessionManager.shared.account.key) { (getPublicUserDataResponse, error) in
+                guard let getPublicUserDataResponse = getPublicUserDataResponse else {
+                    print(error!) // TODO: Handle error
+                    return
+                }
+                
+                // TODO: How to handle unwrapping here?
+                let location = placemarks.first?.location
+                let latitude = location?.coordinate.latitude
+                let longitude = location?.coordinate.longitude
+                let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+                
+                // TODO: Is this the proper way to unwrap here?
+                let firstName = getPublicUserDataResponse.firstName ?? ""
+                let lastName = getPublicUserDataResponse.lastName ?? ""
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(firstName) \(lastName)"
+                annotation.subtitle = self.mediaURL
+                
+                // TODO: I don't like this - how should I create StudentLocation?
+                DispatchQueue.main.async {
+                    self.annotations.append(annotation)
+                    self.mapView.addAnnotations(self.annotations)
+                    self.firstName = firstName
+                    self.lastName = lastName
+                    self.latitude = latitude
+                    self.longitude = longitude
+                }
+                
             }
         }
     }

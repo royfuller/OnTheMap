@@ -36,7 +36,7 @@ class TableViewController: UITableViewController {
 
         cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.detailTextLabel?.text = "\(studentLocation.mediaURL)"
-        cell.imageView?.image = UIImage(named: "Pin")
+        cell.imageView?.image = UIImage(named: "icon_pin")
         
         return cell
     }
