@@ -15,8 +15,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     var location: String!
     var mediaURL: String!
-    var latitude: Double!
-    var longitude: Double!
+    var studentLocation: StudentLocation!
     var annotations = [MKPointAnnotation]()
     
     // MARK: Outlets
@@ -55,14 +54,22 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: Actions
     
     @IBAction func finish(_ sender: Any) {
-        OnTheMapClient.createStudentLocation(studentLocation: OnTheMapManager.shared.studentLocation) { (createStudentLocationResponse, error) in
-            if(error != nil) {
-                print(error!) // TODO: How to handle error here?
-                return
+        if OnTheMapManager.shared.objectId == nil {
+            OnTheMapClient.createStudentLocation(studentLocation: studentLocation) { (error) in
+                if(error != nil) {
+                    print(error!) // TODO: How to handle error here?
+                    return
+                }
+                self.presentMapViewController()
             }
-            let controller: UITabBarController
-            controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-            self.present(controller, animated: true, completion: nil)
+        } else {
+            OnTheMapClient.updateStudentLocation(objectId: OnTheMapManager.shared.objectId, newStudentLocation: studentLocation) { (error) in
+                if(error != nil) {
+                    print(error!) // TODO: How to handle error here?
+                    return
+                }
+                self.presentMapViewController()
+            }
         }
     }
     
@@ -92,21 +99,18 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             annotation.title = "\(firstName) \(lastName)"
             annotation.subtitle = self.mediaURL
             
-            // TODO: Move this code to finish and fix update logic.
-            if OnTheMapManager.shared.studentLocation == nil {
-                OnTheMapManager.shared.studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude!, longitude: longitude!, mapString: self.location, mediaURL: self.mediaURL, uniqueKey: OnTheMapManager.shared.userId, objectId: nil, createdAt: nil, updatedAt: nil)
-            } else {
-                OnTheMapManager.shared.studentLocation.latitude = latitude!
-                OnTheMapManager.shared.studentLocation.longitude = longitude!
-                OnTheMapManager.shared.studentLocation.mapString = self.location
-                OnTheMapManager.shared.studentLocation.mediaURL = self.mediaURL
-            }
-            
-            // TODO: I don't like this - how should I create StudentLocation?
             DispatchQueue.main.async {
                 self.annotations.append(annotation)
                 self.mapView.addAnnotations(self.annotations)
+                // TODO: Is it okay to force unwrap here?
+                self.studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude!, longitude: longitude!, mapString: self.location, mediaURL: self.mediaURL, uniqueKey: OnTheMapManager.shared.userId, objectId: nil, createdAt: nil, updatedAt: nil)
             }
         }
+    }
+    
+    func presentMapViewController() {
+        let controller: UITabBarController
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        self.present(controller, animated: true, completion: nil)
     }
 }

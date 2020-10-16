@@ -16,3 +16,8 @@ struct CreateSessionResponse: Codable {
     let account: Account
     let session: Session
 }
+
+struct CreateSessionErrorResponse: Codable {
+    let status: Int
+    let error: String
+}

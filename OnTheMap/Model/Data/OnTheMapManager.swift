@@ -12,6 +12,6 @@ class OnTheMapManager {
     static let shared = OnTheMapManager()
     
     var userId: String!
-    var studentLocation: StudentLocation!
+    var objectId: String!
     var publicUserData: GetPublicUserDataResponse!
 }

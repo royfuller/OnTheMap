@@ -23,8 +23,7 @@ class LoginViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func login(_ sender: Any) {
-        // TODO: Perhaps check for empty string?
-        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(userId:error:))
+        OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(userId:errorDescription:))
     }
 
     @IBAction func signUp(_ sender: Any) {
@@ -33,9 +32,9 @@ class LoginViewController: UIViewController {
     
     // MARK: Utility function(s)
 
-    func handleCreateSessionResponse(userId: String?, error: Error?) {
+    func handleCreateSessionResponse(userId: String?, errorDescription: String?) {
         guard let userId = userId else {
-            print(error!)  // TODO: Error handling
+            showLoginFailure(message: errorDescription ?? "Unknown error")
             return
         }
         OnTheMapManager.shared.userId = userId
@@ -44,11 +43,17 @@ class LoginViewController: UIViewController {
     
     func handleGetPublicUserDataResponse(publicUserDataResonse: GetPublicUserDataResponse?, error: Error?) {
         guard let publicUserDataResponse = publicUserDataResonse else {
-            print(error!)
+            showLoginFailure(message: error?.localizedDescription ?? "")
             return
         }
         OnTheMapManager.shared.publicUserData = publicUserDataResponse
         performSegue(withIdentifier: "completeLogin", sender: nil)
+    }
+    
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        show(alertVC, sender: nil)
     }
 }
 
