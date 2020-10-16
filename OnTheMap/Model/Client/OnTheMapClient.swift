@@ -106,13 +106,6 @@ class OnTheMapClient {
                 }
                 return
             }
-//            let decoder = JSONDecoder()
-//            do {
-//                let responseObject = try decoder.decode(CreateStudentLocationResponse.self, from: data)
-//                print(responseObject)
-//            } catch {
-//                print(error)
-//            }
             DispatchQueue.main.async {
                 completionHandler(nil)
             }
@@ -133,19 +126,16 @@ class OnTheMapClient {
                 }
                 return
             }
-            let range = 5..<data!.count
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(String(data: newData!, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(CreateSessionResponse.self, from: newData!)
+                let responseObject = try decoder.decode(CreateSessionResponse.self, from: subsetResponseData(data: data!))
                 DispatchQueue.main.async {
                         completionHandler(responseObject.account.key, nil)
                 }
             } catch {
                 // TODO: Consider breaking out into utility method
                 do {
-                    let errorResponseObject = try decoder.decode(CreateSessionErrorResponse.self, from: newData!)
+                    let errorResponseObject = try decoder.decode(CreateSessionErrorResponse.self, from: subsetResponseData(data: data!))
                     DispatchQueue.main.async {
                         completionHandler(nil, errorResponseObject.error)
                     }
@@ -190,12 +180,9 @@ class OnTheMapClient {
                 completionHandler(nil, error)
                 return
             }
-            let range = 5..<data!.count
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(String(data: newData!, encoding: .utf8)!)
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(GetPublicUserDataResponse.self, from: newData!)
+                let responseObject = try decoder.decode(GetPublicUserDataResponse.self, from: subsetResponseData(data: data!))
                 DispatchQueue.main.async {
                     completionHandler(responseObject, nil)
                 }
@@ -207,5 +194,10 @@ class OnTheMapClient {
             }
         }
         task.resume()
+    }
+
+    class func subsetResponseData(data: Data) -> Data {
+        let range = 5..<data.count
+        return data.subdata(in: range)
     }
 }
