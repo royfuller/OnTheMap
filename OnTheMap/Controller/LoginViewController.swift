@@ -10,18 +10,18 @@ import UIKit
 class LoginViewController: UIViewController {
 
     // MARK: Outlets
-    
+
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     // MARK: Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     // MARK: Actions
-    
+
     @IBAction func login(_ sender: Any) {
         OnTheMapClient.createSession(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completionHandler: handleCreateSessionResponse(userId:errorDescription:))
     }
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUp(_ sender: Any) {
         UIApplication.shared.open(URL(string: "https://www.udacity.com")!, options: [:], completionHandler: nil)
     }
-    
+
     // MARK: Utility function(s)
 
     func handleCreateSessionResponse(userId: String?, errorDescription: String?) {

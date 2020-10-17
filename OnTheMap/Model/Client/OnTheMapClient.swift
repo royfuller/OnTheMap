@@ -37,11 +37,11 @@ class OnTheMapClient {
     }
 
     // TODO: Error handling
-    class func getStudentLocations(completionHandler: @escaping (Error?) -> Void){
+    class func getStudentLocations(completionHandler: @escaping (String?) -> Void){
         let task = URLSession.shared.dataTask(with: Endpoints.getStudentLocations.url) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completionHandler(error)
+                    completionHandler(error?.localizedDescription)
                 }
                 return
             }
@@ -54,7 +54,7 @@ class OnTheMapClient {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completionHandler(error)
+                    completionHandler(error.localizedDescription)
                 }
                 return
             }

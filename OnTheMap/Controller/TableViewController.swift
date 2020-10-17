@@ -8,16 +8,17 @@
 import UIKit
 
 class TableViewController: UITableViewController {
+
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "On The Map"
-        getStudentLocations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getStudentLocations()
     }
     
     // MARK: TableView Methods
@@ -55,15 +56,20 @@ class TableViewController: UITableViewController {
         getStudentLocations()
     }
     
-    // MARK: Utility function(s)
+    // MARK: Utility functions
     
     func getStudentLocations() {
-        OnTheMapClient.getStudentLocations { (error) in
-            if error != nil {
-                // TODO: Handle error
-                print(error!)
+        OnTheMapClient.getStudentLocations { (errorDescription) in
+            if errorDescription != nil {
+                self.showLoginFailure(message: errorDescription ?? "Unknown Error")
             }
             self.tableView.reloadData()
         }
+    }
+
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Student Location Data Retrieval Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: false, completion: nil)
     }
 }

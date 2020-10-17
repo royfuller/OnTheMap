@@ -62,10 +62,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func getStudentLocations() {
         
         // TODO: Error handling
-        OnTheMapClient.getStudentLocations { (error) in
+        OnTheMapClient.getStudentLocations { (errorDescription) in
             
-            if(error != nil) {
-                print(error!)
+            if(errorDescription != nil) {
+                self.showLoginFailure(message: errorDescription ?? "Unknown Error")
             }
             
             // The below code was copied from the PinSample app
@@ -90,9 +90,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 annotations.append(annotation)
             }
             
-            DispatchQueue.main.async {
-                self.mapView.addAnnotations(annotations)
-            }
+            self.mapView.addAnnotations(annotations)
         }
+    }
+
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Student Location Data Retrieval Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: false, completion: nil)
     }
 }
