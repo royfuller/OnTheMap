@@ -8,10 +8,6 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    
-    // MARK: Variables
-    var studentLocations = [StudentLocation]()
-    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -27,12 +23,12 @@ class TableViewController: UITableViewController {
     // MARK: TableView Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentLocations.count
+        return OnTheMapManager.shared.studentLocations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentLocationsTableViewCell")!
-        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
+        let studentLocation = OnTheMapManager.shared.studentLocations[(indexPath as NSIndexPath).row]
 
         cell.textLabel?.text = "\(studentLocation.firstName) \(studentLocation.lastName)"
         cell.detailTextLabel?.text = "\(studentLocation.mediaURL)"
@@ -42,7 +38,7 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let studentLocation = studentLocations[(indexPath as NSIndexPath).row]
+        let studentLocation = OnTheMapManager.shared.studentLocations[(indexPath as NSIndexPath).row]
         UIApplication.shared.open(URL(string: studentLocation.mediaURL)!, options: [:], completionHandler: nil)
     }
     
@@ -62,11 +58,10 @@ class TableViewController: UITableViewController {
     // MARK: Utility function(s)
     
     func getStudentLocations() {
-        OnTheMapClient.getStudentLocations { (studentLocations, error) in
+        OnTheMapClient.getStudentLocations { (error) in
             if error != nil {
-                // Handle error - popup maybe?
-            } else {
-                self.studentLocations = studentLocations
+                // TODO: Handle error
+                print(error!)
             }
             self.tableView.reloadData()
         }

@@ -37,11 +37,11 @@ class OnTheMapClient {
     }
 
     // TODO: Error handling
-    class func getStudentLocations(completionHandler: @escaping ([StudentLocation], Error?) -> Void){
+    class func getStudentLocations(completionHandler: @escaping (Error?) -> Void){
         let task = URLSession.shared.dataTask(with: Endpoints.getStudentLocations.url) { (data, response, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completionHandler([], error)
+                    completionHandler(error)
                 }
                 return
             }
@@ -49,11 +49,12 @@ class OnTheMapClient {
             do {
                 let responseObject = try decoder.decode(GetStudentLocationsResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completionHandler(responseObject.results, nil)
+                    OnTheMapManager.shared.studentLocations = responseObject.results
+                    completionHandler(nil)
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completionHandler([], error)
+                    completionHandler(error)
                 }
                 return
             }
@@ -165,11 +166,7 @@ class OnTheMapClient {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            SessionManager.shared.account = nil
-            SessionManager.shared.session = nil
-        }
-        task.resume()
+        URLSession.shared.dataTask(with: request).resume()
     }
     
     // TODO: Error handling

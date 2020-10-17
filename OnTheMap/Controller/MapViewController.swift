@@ -60,13 +60,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Utility function(s)
     
     func getStudentLocations() {
-        OnTheMapClient.getStudentLocations { (studentLocations, error) in
+        
+        // TODO: Error handling
+        OnTheMapClient.getStudentLocations { (error) in
+            
+            if(error != nil) {
+                print(error!)
+            }
             
             // The below code was copied from the PinSample app
             // and modified due to updates in the language/project version.
             var annotations = [MKPointAnnotation]()
 
-            for studentLocation in studentLocations {
+            for studentLocation in OnTheMapManager.shared.studentLocations {
                 let lat = CLLocationDegrees(studentLocation.latitude)
                 let long = CLLocationDegrees(studentLocation.longitude)
                 

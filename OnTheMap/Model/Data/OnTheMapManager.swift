@@ -14,4 +14,5 @@ class OnTheMapManager {
     var userId: String!
     var objectId: String!
     var publicUserData: GetPublicUserDataResponse!
+    var studentLocations = [StudentLocation]()
 }
