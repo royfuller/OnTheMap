@@ -43,6 +43,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
     
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            if let studentLocation = view.annotation?.subtitle! {
+                UIApplication.shared.open(URL(string: studentLocation)!, options: [:], completionHandler: nil)
+            }
+        }
+    }
+
     // MARK: Actions
     
     @IBAction func logout(_ sender: Any) {
