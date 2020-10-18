@@ -7,7 +7,6 @@
 
 import Foundation
 
-// TODO: Combine GET/POST code into generic methods
 class OnTheMapClient {
     
     enum Endpoints {
@@ -36,7 +35,6 @@ class OnTheMapClient {
         }
     }
 
-    // TODO: Error handling
     class func getStudentLocations(completionHandler: @escaping (String?) -> Void){
         let task = URLSession.shared.dataTask(with: Endpoints.getStudentLocations.url) { (data, response, error) in
             guard let data = data else {
@@ -62,7 +60,6 @@ class OnTheMapClient {
         task.resume()
     }
     
-    // TODO: Error handling
     class func createStudentLocation(studentLocation: StudentLocation, completionHandler: @escaping (Error?) -> Void) {
         var request = URLRequest(url: Endpoints.createStudentLocation.url)
         request.httpMethod = "POST"
@@ -70,9 +67,8 @@ class OnTheMapClient {
         request.httpBody = try! JSONEncoder().encode(studentLocation)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                print(error!)
                 DispatchQueue.main.async {
-                    completionHandler(error) // TODO: What should happen if the create call fails?
+                    completionHandler(error)
                 }
                 return
             }
@@ -94,7 +90,6 @@ class OnTheMapClient {
         task.resume()
     }
     
-    // TODO: Error handling
     class func updateStudentLocation(objectId: String, newStudentLocation: StudentLocation, completionHandler: @escaping (Error?) -> Void) {
         var request = URLRequest(url: Endpoints.updateStudentLocation(objectId).url)
         request.httpMethod = "PUT"
@@ -134,7 +129,6 @@ class OnTheMapClient {
                         completionHandler(responseObject.account.key, nil)
                 }
             } catch {
-                // TODO: Consider breaking out into utility method
                 do {
                     let errorResponseObject = try decoder.decode(CreateSessionErrorResponse.self, from: subsetResponseData(data: data!))
                     DispatchQueue.main.async {
@@ -169,11 +163,10 @@ class OnTheMapClient {
         URLSession.shared.dataTask(with: request).resume()
     }
     
-    // TODO: Error handling
     class func getPublicUserData(userId: String, completionHandler: @escaping (GetPublicUserDataResponse?, Error?) -> Void) {
         
         let task = URLSession.shared.dataTask(with: Endpoints.getPublicUserData(userId).url) { (data, response, error) in
-            if error != nil { // TODO: Handle error...
+            if error != nil {
                 completionHandler(nil, error)
                 return
             }

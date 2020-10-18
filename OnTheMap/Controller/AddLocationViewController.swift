@@ -17,10 +17,13 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     var mediaURL: String!
     var studentLocation: StudentLocation!
     var annotations = [MKPointAnnotation]()
+    let unknownError = "Unknown Error"
     
     // MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Lifecycle
     
@@ -28,7 +31,9 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         self.navigationItem.title = "Add Location"
         mapView.delegate = self
+        setFindingLocation(findingLocation: true, finishEnabled: false)
         geocodeLocation()
+        setFindingLocation(findingLocation: false, finishEnabled: true)
     }
 
     // MARK: MapView delegate methods
@@ -57,7 +62,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         if OnTheMapManager.shared.objectId == nil {
             OnTheMapClient.createStudentLocation(studentLocation: studentLocation) { (error) in
                 if(error != nil) {
-                    print(error!) // TODO: How to handle error here?
+                    self.showFailure(title: "Failure Creating Student Location", message: error?.localizedDescription ?? self.unknownError)
                     return
                 }
                 self.presentMapViewController()
@@ -65,7 +70,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         } else {
             OnTheMapClient.updateStudentLocation(objectId: OnTheMapManager.shared.objectId, newStudentLocation: studentLocation) { (error) in
                 if(error != nil) {
-                    print(error!) // TODO: How to handle error here?
+                    self.showFailure(title: "Failure Updating Student Location", message: error?.localizedDescription ?? self.unknownError)
                     return
                 }
                 self.presentMapViewController()
@@ -81,11 +86,13 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         
         geocoder.geocodeAddressString(location) { (placemarks, error) in
             guard let placemarks = placemarks else {
-                print(error!)  // TODO: How to handle error here?
+                DispatchQueue.main.async {
+                    self.setFindingLocation(findingLocation: false, finishEnabled: false)
+                    self.showFailure(title: "Address Geocoding Failed", message: error?.localizedDescription ?? self.unknownError)
+                }
                 return
             }
                 
-            // TODO: How to handle unwrapping here?
             let location = placemarks.first?.location
             let latitude = location?.coordinate.latitude
             let longitude = location?.coordinate.longitude
@@ -102,9 +109,19 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 self.annotations.append(annotation)
                 self.mapView.addAnnotations(self.annotations)
-                // TODO: Is it okay to force unwrap here?
                 self.studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude!, longitude: longitude!, mapString: self.location, mediaURL: self.mediaURL, uniqueKey: OnTheMapManager.shared.userId, objectId: nil, createdAt: nil, updatedAt: nil)
             }
+        }
+    }
+    
+    func setFindingLocation(findingLocation: Bool, finishEnabled: Bool) {
+        if findingLocation {
+            activityIndicator.startAnimating()
+            finishButton.isEnabled = finishEnabled
+        } else {
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+            finishButton.isEnabled = finishEnabled
         }
     }
     
@@ -112,5 +129,11 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         let controller: UITabBarController
         controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func showFailure(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertVC, animated: false, completion: nil)
     }
 }

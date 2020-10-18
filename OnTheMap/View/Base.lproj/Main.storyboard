@@ -298,6 +298,9 @@
                                     <action selector="finish:" destination="Wbc-kk-Epi" eventType="touchUpInside" id="DID-Ww-ClF"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Kqo-oM-RHa">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qtz-QD-2HX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -305,7 +308,9 @@
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="bottom" secondItem="2Wr-gx-gyn" secondAttribute="bottom" constant="25" id="1Pg-ve-Ql6"/>
                             <constraint firstItem="2Wr-gx-gyn" firstAttribute="leading" secondItem="qtz-QD-2HX" secondAttribute="leading" constant="25" id="8jC-4J-fWP"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="trailing" secondItem="2Wr-gx-gyn" secondAttribute="trailing" constant="25" id="Jjb-Ve-w1N"/>
+                            <constraint firstItem="Kqo-oM-RHa" firstAttribute="centerY" secondItem="qtz-QD-2HX" secondAttribute="centerY" id="ULa-OX-tpf"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="trailing" secondItem="7Hn-tW-6ei" secondAttribute="trailing" id="Z8G-Xh-YLx"/>
+                            <constraint firstItem="Kqo-oM-RHa" firstAttribute="centerX" secondItem="qtz-QD-2HX" secondAttribute="centerX" id="jG0-8T-Kgu"/>
                             <constraint firstItem="7Hn-tW-6ei" firstAttribute="leading" secondItem="qtz-QD-2HX" secondAttribute="leading" id="kyT-cf-N7t"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="bottom" secondItem="7Hn-tW-6ei" secondAttribute="bottom" id="qX7-cw-6pG"/>
                             <constraint firstItem="7Hn-tW-6ei" firstAttribute="top" secondItem="qtz-QD-2HX" secondAttribute="top" id="tAJ-wL-UIu"/>
@@ -313,6 +318,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="vet-fx-a2K"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Kqo-oM-RHa" id="6SH-iU-Sma"/>
+                        <outlet property="finishButton" destination="2Wr-gx-gyn" id="FBk-o5-JCN"/>
                         <outlet property="mapView" destination="7Hn-tW-6ei" id="4Pa-fB-bQj"/>
                     </connections>
                 </viewController>

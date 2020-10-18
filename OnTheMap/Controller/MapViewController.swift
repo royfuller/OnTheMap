@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .infoLight)//.detailDisclosure)
+            pinView!.rightCalloutAccessoryView = UIButton(type: .infoLight)
         }
         else {
             pinView!.annotation = annotation
@@ -69,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func getStudentLocations() {
         
-        // TODO: Error handling
         OnTheMapClient.getStudentLocations { (errorDescription) in
             
             if(errorDescription != nil) {
