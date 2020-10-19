@@ -65,7 +65,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                     self.showFailure(title: "Failure Creating Student Location", message: error?.localizedDescription ?? self.unknownError)
                     return
                 }
-                self.presentMapViewController()
+                self.dismiss(animated: true, completion: nil)
             }
         } else {
             OnTheMapClient.updateStudentLocation(objectId: OnTheMapManager.shared.objectId, newStudentLocation: studentLocation) { (error) in
@@ -73,7 +73,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
                     self.showFailure(title: "Failure Updating Student Location", message: error?.localizedDescription ?? self.unknownError)
                     return
                 }
-                self.presentMapViewController()
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -123,17 +123,5 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
             activityIndicator.isHidden = true
             finishButton.isEnabled = finishEnabled
         }
-    }
-    
-    func presentMapViewController() {
-        let controller: UITabBarController
-        controller = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        present(controller, animated: true, completion: nil)
-    }
-    
-    func showFailure(title: String, message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: false, completion: nil)
     }
 }

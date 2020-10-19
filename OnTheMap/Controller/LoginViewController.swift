@@ -8,6 +8,10 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    // MARK: Variables
+    let loginFailed = "Login Failed"
+    let unknownError = "Unknown error"
 
     // MARK: Outlets
 
@@ -34,7 +38,7 @@ class LoginViewController: UIViewController {
 
     func handleCreateSessionResponse(userId: String?, errorDescription: String?) {
         guard let userId = userId else {
-            showLoginFailure(message: errorDescription ?? "Unknown error")
+            showFailure(title: loginFailed, message: errorDescription ?? unknownError)
             return
         }
         OnTheMapManager.shared.userId = userId
@@ -43,17 +47,11 @@ class LoginViewController: UIViewController {
     
     func handleGetPublicUserDataResponse(publicUserDataResonse: GetPublicUserDataResponse?, error: Error?) {
         guard let publicUserDataResponse = publicUserDataResonse else {
-            showLoginFailure(message: error?.localizedDescription ?? "")
+            showFailure(title: loginFailed, message: error?.localizedDescription ?? unknownError)
             return
         }
         OnTheMapManager.shared.publicUserData = publicUserDataResponse
         performSegue(withIdentifier: "completeLogin", sender: nil)
-    }
-    
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
     }
 }
 

@@ -55,9 +55,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func logout(_ sender: Any) {
         OnTheMapClient.deleteSession()
-        let controller: LoginViewController
-        controller = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        present(controller, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func refresh(_ sender: Any) {
@@ -72,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         OnTheMapClient.getStudentLocations { (errorDescription) in
             
             if(errorDescription != nil) {
-                self.showLoginFailure(message: errorDescription ?? "Unknown Error")
+                self.showFailure(title: "Student Location Data Retrieval Failed", message: errorDescription ?? "Unknown Error")
             }
             
             // The below code was copied from the PinSample app
@@ -99,11 +97,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             self.mapView.addAnnotations(annotations)
         }
-    }
-
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Student Location Data Retrieval Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: false, completion: nil)
     }
 }

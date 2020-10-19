@@ -17,6 +17,7 @@
 		B06D173025198852003BCB9A /* CreateSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06D172F25198852003BCB9A /* CreateSessionResponse.swift */; };
 		B08014752519991C004D2D77 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08014742519991C004D2D77 /* Session.swift */; };
 		B080147825199948004D2D77 /* DeleteSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080147725199948004D2D77 /* DeleteSessionResponse.swift */; };
+		B0886F7A253E53FB0022B492 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0886F79253E53FB0022B492 /* UIViewControllerExtension.swift */; };
 		B0A65BED252129B900C8D1AC /* OnTheMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A65BEC252129B900C8D1AC /* OnTheMapManager.swift */; };
 		B0B2A472251AAD7900A0DF09 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B2A471251AAD7900A0DF09 /* TableViewController.swift */; };
 		B0B8B595251AD449004589FE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B8B594251AD449004589FE /* MapViewController.swift */; };
@@ -41,6 +42,7 @@
 		B06D172F25198852003BCB9A /* CreateSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionResponse.swift; sourceTree = "<group>"; };
 		B08014742519991C004D2D77 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B080147725199948004D2D77 /* DeleteSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteSessionResponse.swift; sourceTree = "<group>"; };
+		B0886F79253E53FB0022B492 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B0A65BEC252129B900C8D1AC /* OnTheMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapManager.swift; sourceTree = "<group>"; };
 		B0B2A471251AAD7900A0DF09 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B0B8B594251AD449004589FE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				B0B8B594251AD449004589FE /* MapViewController.swift */,
 				A9D0ED05251D657E008601BA /* InformationPostingViewController.swift */,
 				A9D0ED07251D6C82008601BA /* AddLocationViewController.swift */,
+				B0886F79253E53FB0022B492 /* UIViewControllerExtension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				B080147825199948004D2D77 /* DeleteSessionResponse.swift in Sources */,
 				B06D172A2519793E003BCB9A /* UpdateStudentLocationResponse.swift in Sources */,
 				B0B2A472251AAD7900A0DF09 /* TableViewController.swift in Sources */,
+				B0886F7A253E53FB0022B492 /* UIViewControllerExtension.swift in Sources */,
 				B0FC610225193D1200822C1B /* LoginViewController.swift in Sources */,
 				B0FC60FE25193D1200822C1B /* AppDelegate.swift in Sources */,
 				B06A856225194E3800963C2F /* GetStudentLocationsResponse.swift in Sources */,

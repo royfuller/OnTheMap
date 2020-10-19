@@ -14,12 +14,6 @@ class InformationPostingViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
     
-    // MARK: Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     // MARK: Actions
     
     @IBAction func cancel(_ sender: Any) {

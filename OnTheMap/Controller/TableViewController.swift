@@ -47,9 +47,7 @@ class TableViewController: UITableViewController {
     
     @IBAction func logout(_ sender: Any) {
         OnTheMapClient.deleteSession()
-        let controller: LoginViewController
-        controller = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        present(controller, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func refresh(_ sender: Any) {
@@ -61,15 +59,9 @@ class TableViewController: UITableViewController {
     func getStudentLocations() {
         OnTheMapClient.getStudentLocations { (errorDescription) in
             if errorDescription != nil {
-                self.showLoginFailure(message: errorDescription ?? "Unknown Error")
+                self.showFailure(title: "Student Location Data Retrieval Failed", message: errorDescription ?? "Unknown Error")
             }
             self.tableView.reloadData()
         }
-    }
-
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Student Location Data Retrieval Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: false, completion: nil)
     }
 }
