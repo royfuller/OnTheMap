@@ -23,11 +23,11 @@ class InformationPostingViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func cancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func findLocation(_ sender: Any) {
-        self.performSegue(withIdentifier: "addLocation", sender: self)
+        performSegue(withIdentifier: "addLocation", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

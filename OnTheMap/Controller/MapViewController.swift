@@ -18,7 +18,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "On The Map"
+        navigationItem.title = "On The Map"
         mapView.delegate = self
         getStudentLocations()
     }
@@ -61,7 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func refresh(_ sender: Any) {
-        self.mapView.removeAnnotations(self.mapView.annotations)
+        mapView.removeAnnotations(mapView.annotations)
         getStudentLocations()
     }
     

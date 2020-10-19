@@ -29,7 +29,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Add Location"
+        navigationItem.title = "Add Location"
         mapView.delegate = self
         setFindingLocation(findingLocation: true, finishEnabled: false)
         geocodeLocation()
@@ -127,8 +127,8 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     func presentMapViewController() {
         let controller: UITabBarController
-        controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        self.present(controller, animated: true, completion: nil)
+        controller = storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        present(controller, animated: true, completion: nil)
     }
     
     func showFailure(title: String, message: String) {

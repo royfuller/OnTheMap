@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "On The Map"
+        navigationItem.title = "On The Map"
     }
     
     override func viewWillAppear(_ animated: Bool) {
