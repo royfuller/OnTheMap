@@ -204,10 +204,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="cGL-Q5-J2z">
-                                <rect key="frame" x="87" y="324" width="240" height="67"/>
+                                <rect key="frame" x="87" y="311.5" width="240" height="67"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dtA-uH-hkY">
-                                <rect key="frame" x="25" y="421" width="364" height="108"/>
+                                <rect key="frame" x="25" y="408.5" width="364" height="133"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City, State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dW8-l6-A2H">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="34"/>
@@ -229,6 +229,9 @@
                                             <action selector="findLocation:" destination="CkT-dc-W3k" eventType="touchUpInside" id="WC3-eI-mSE"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ane-Mx-STl">
+                                        <rect key="frame" x="0.0" y="113" width="364" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -251,6 +254,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ane-Mx-STl" id="7bU-w6-wJB"/>
                         <outlet property="linkTextField" destination="FDT-Od-msm" id="yAT-mz-7Jw"/>
                         <outlet property="locationTextField" destination="dW8-l6-A2H" id="IK1-Ug-wus"/>
                         <segue destination="Wbc-kk-Epi" kind="show" identifier="addLocation" id="Oeb-g4-Uiw"/>
@@ -298,9 +302,6 @@
                                     <action selector="finish:" destination="Wbc-kk-Epi" eventType="touchUpInside" id="DID-Ww-ClF"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Kqo-oM-RHa">
-                                <rect key="frame" x="197" y="465" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qtz-QD-2HX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -308,9 +309,7 @@
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="bottom" secondItem="2Wr-gx-gyn" secondAttribute="bottom" constant="25" id="1Pg-ve-Ql6"/>
                             <constraint firstItem="2Wr-gx-gyn" firstAttribute="leading" secondItem="qtz-QD-2HX" secondAttribute="leading" constant="25" id="8jC-4J-fWP"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="trailing" secondItem="2Wr-gx-gyn" secondAttribute="trailing" constant="25" id="Jjb-Ve-w1N"/>
-                            <constraint firstItem="Kqo-oM-RHa" firstAttribute="centerY" secondItem="qtz-QD-2HX" secondAttribute="centerY" id="ULa-OX-tpf"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="trailing" secondItem="7Hn-tW-6ei" secondAttribute="trailing" id="Z8G-Xh-YLx"/>
-                            <constraint firstItem="Kqo-oM-RHa" firstAttribute="centerX" secondItem="qtz-QD-2HX" secondAttribute="centerX" id="jG0-8T-Kgu"/>
                             <constraint firstItem="7Hn-tW-6ei" firstAttribute="leading" secondItem="qtz-QD-2HX" secondAttribute="leading" id="kyT-cf-N7t"/>
                             <constraint firstItem="qtz-QD-2HX" firstAttribute="bottom" secondItem="7Hn-tW-6ei" secondAttribute="bottom" id="qX7-cw-6pG"/>
                             <constraint firstItem="7Hn-tW-6ei" firstAttribute="top" secondItem="qtz-QD-2HX" secondAttribute="top" id="tAJ-wL-UIu"/>
@@ -318,7 +317,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="vet-fx-a2K"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Kqo-oM-RHa" id="6SH-iU-Sma"/>
                         <outlet property="finishButton" destination="2Wr-gx-gyn" id="FBk-o5-JCN"/>
                         <outlet property="mapView" destination="7Hn-tW-6ei" id="4Pa-fB-bQj"/>
                     </connections>

@@ -6,24 +6,23 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 
 class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Variables
     
-    var location: String!
-    var mediaURL: String!
+    var latitude:CLLocationDegrees!
+    var longitude:CLLocationDegrees!
+    let latDelta:CLLocationDegrees = 0.05
+    let lonDelta:CLLocationDegrees = 0.05
     var studentLocation: StudentLocation!
-    var annotations = [MKPointAnnotation]()
     let unknownError = "Unknown Error"
     
     // MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var finishButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Lifecycle
     
@@ -31,9 +30,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         navigationItem.title = "Add Location"
         mapView.delegate = self
-        setFindingLocation(findingLocation: true, finishEnabled: false)
-        geocodeLocation()
-        setFindingLocation(findingLocation: false, finishEnabled: true)
+        placePinAndZoomRegion()
     }
 
     // MARK: MapView delegate methods
@@ -80,48 +77,19 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Utility function(s)
     
-    // The below code was adapted from https://cocoacasts.com/forward-geocoding-with-clgeocoder
-    func geocodeLocation() {
-        let geocoder = CLGeocoder()
+    func placePinAndZoomRegion() {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let firstName = studentLocation.firstName
+        let lastName =  studentLocation.lastName
+        let span = MKCoordinateSpan.init(latitudeDelta: latDelta, longitudeDelta: lonDelta)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
         
-        geocoder.geocodeAddressString(location) { (placemarks, error) in
-            guard let placemarks = placemarks else {
-                DispatchQueue.main.async {
-                    self.setFindingLocation(findingLocation: false, finishEnabled: false)
-                    self.showFailure(title: "Address Geocoding Failed", message: error?.localizedDescription ?? self.unknownError)
-                }
-                return
-            }
-                
-            let location = placemarks.first?.location
-            let latitude = location?.coordinate.latitude
-            let longitude = location?.coordinate.longitude
-            let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            
-            let firstName = OnTheMapManager.shared.publicUserData.firstName
-            let lastName =  OnTheMapManager.shared.publicUserData.lastName
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(firstName) \(lastName)"
-            annotation.subtitle = self.mediaURL
-            
-            DispatchQueue.main.async {
-                self.annotations.append(annotation)
-                self.mapView.addAnnotations(self.annotations)
-                self.studentLocation = StudentLocation(firstName: firstName, lastName: lastName, latitude: latitude!, longitude: longitude!, mapString: self.location, mediaURL: self.mediaURL, uniqueKey: OnTheMapManager.shared.userId, objectId: nil, createdAt: nil, updatedAt: nil)
-            }
-        }
-    }
-    
-    func setFindingLocation(findingLocation: Bool, finishEnabled: Bool) {
-        if findingLocation {
-            activityIndicator.startAnimating()
-            finishButton.isEnabled = finishEnabled
-        } else {
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
-            finishButton.isEnabled = finishEnabled
-        }
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = "\(firstName) \(lastName)"
+        annotation.subtitle = studentLocation.mediaURL
+        
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: false)
     }
 }

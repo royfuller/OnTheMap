@@ -23,6 +23,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         getStudentLocations()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh(self)
+    }
+    
     // MARK: MapView delegate methods
     
     // The below code was copied from the PinSample app.
